@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mecit Efe Y&imath;lmaz | Official</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #00d2ff; --secondary: #3a7bd5; --dark: #060b14; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: var(--dark); color: white; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+        
+        /* Navigasyon */
+        nav { padding: 20px; display: flex; justify-content: center; gap: 30px; background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); }
+        nav a { color: white; text-decoration: none; font-weight: 600; font-size: 0.9rem; letter-spacing: 1px; transition: 0.3s; }
+        nav a:hover { color: var(--primary); }
+
+        .hero { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+                background: linear-gradient(rgba(6,11,20,0.8), rgba(6,11,20,0.8)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80');
+                background-size: cover; background-position: center; }
+        
+        h1 { font-family: 'Orbitron', sans-serif; font-size: 4rem; margin-bottom: 10px; background: linear-gradient(to right, #00d2ff, #3a7bd5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        p { font-size: 1.2rem; letter-spacing: 3px; color: #aaa; margin-bottom: 40px; }
+
+        .btn-group { display: flex; gap: 20px; }
+        .btn { padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: 0.4s; text-transform: uppercase; border: 2px solid var(--primary); }
+        .btn-kesfet { background: var(--primary); color: var(--dark); }
+        .btn-linkedin { color: var(--primary); background: transparent; }
+        .btn:hover { transform: scale(1.1); box-shadow: 0 0 20px var(--primary); }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">ANA SAYFA</a>
+        <a href="hakkimda.html">PROFIL</a>
+        <a href="deneyimler.html">DENEY&Idot;MLER</a>
+    </nav>
+    <div class="hero">
+        <h1>HO&Scedil; GELD&Idot;N&Idot;Z</h1>
+        <p>NETWORK SPECIALIST &bull; IT STUDENT</p>
+        <div class="btn-group">
+            <a href="hakkimda.html" class="btn btn-kesfet">KE&Scedil;FET</a>
+            <a href="https://tr.linkedin.com/in/mecit-efe-y%C4%B1lmaz-1789a2383" target="_blank" class="btn btn-linkedin">LINKEDIN</a>
+        </div>
+    </div>
+</body>
+</html>
