@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mecit Efe Y&#305;lmaz</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#030712;
+  --bg2:#060f1e;
+  --surface:#0b1a2e;
+  --surface2:#0f2040;
+  --border:#112644;
+  --border2:#1a3a60;
+  --accent:#00c8ff;
+  --accent-dim:rgba(0,200,255,0.12);
+  --accent2:#6366f1;
+  --green:#10b981;
+  --green-dim:rgba(16,185,129,0.12);
+  --text:#e8f0fe;
+  --text2:#94a3b8;
+  --text3:#4a6280;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;min-height:100vh}
+
+/* ---- ANIMATED BG ---- */
+.bg-layer{position:fixed;inset:0;z-index:0;pointer-events:none}
+.grid-lines{position:absolute;inset:0;
+  background-image:linear-gradient(rgba(0,200,255,0.025) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(0,200,255,0.025) 1px,transparent 1px);
+  background-size:80px 80px}
+.orb1{position:absolute;top:-20%;left:-10%;width:700px;height:700px;
+  background:radial-gradient(circle,rgba(99,102,241,0.08) 0%,transparent 65%);
+  animation:orbFloat 12s ease-in-out infinite}
+.orb2{position:absolute;top:40%;right:-15%;width:600px;height:600px;
+  background:radial-gradient(circle,rgba(0,200,255,0.06) 0%,transparent 65%);
+  animation:orbFloat 16s ease-in-out infinite reverse}
+.orb3{position:absolute;bottom:-10%;left:30%;width:500px;height:500px;
+  background:radial-gradient(circle,rgba(16,185,129,0.05) 0%,transparent 65%);
+  animation:orbFloat 20s ease-in-out infinite 4s}
+@keyframes orbFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-40px) scale(1.05)}}
+
+/* ---- NAV ---- */
+nav{position:fixed;top:0;width:100%;z-index:1000;
+  padding:0 60px;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(3,7,18,0.8);backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border)}
+.logo{font-family:'JetBrains Mono',monospace;font-size:0.82rem;
+  color:var(--accent);text-decoration:none;letter-spacing:0.05em;
+  display:flex;align-items:center;gap:6px}
+.logo-bracket{color:var(--text3)}
+.nav-links{display:flex;align-items:center;gap:8px}
+.nav-link{font-size:0.78rem;font-weight:500;color:var(--text2);text-decoration:none;
+  padding:6px 14px;border-radius:6px;transition:all 0.2s;letter-spacing:0.03em}
+.nav-link:hover,.nav-link.active{color:var(--accent);background:var(--accent-dim)}
+.nav-cta{font-size:0.78rem;font-weight:600;color:var(--bg);background:var(--accent);
+  text-decoration:none;padding:7px 18px;border-radius:6px;transition:all 0.2s;letter-spacing:0.03em;margin-left:8px}
+.nav-cta:hover{opacity:0.85;transform:translateY(-1px)}
+
+/* ---- HERO ---- */
+.hero{position:relative;z-index:1;min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:80px 60px 60px;max-width:1280px;margin:0 auto}
+.hero-top{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;
+  font-family:'JetBrains Mono',monospace;font-size:0.7rem;
+  color:var(--green);letter-spacing:0.12em;text-transform:uppercase;
+  padding:5px 14px;border:1px solid rgba(16,185,129,0.25);border-radius:4px;
+  background:var(--green-dim);margin-bottom:28px}
+.hero-eyebrow::before{content:'';width:6px;height:6px;background:var(--green);
+  border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+
+.hero-name{font-size:clamp(3rem,5.5vw,5.5rem);font-weight:900;
+  line-height:1;letter-spacing:-0.04em;margin-bottom:16px}
+.hero-name span{display:block}
+.name-first{color:var(--text)}
+.name-last{background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+.hero-title{font-family:'JetBrains Mono',monospace;font-size:0.85rem;
+  color:var(--accent);letter-spacing:0.05em;margin-bottom:24px}
+.hero-desc{font-size:1rem;color:var(--text2);line-height:1.75;max-width:480px;margin-bottom:40px}
+
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{padding:13px 32px;background:var(--accent);color:var(--bg);
+  font-weight:700;font-size:0.85rem;letter-spacing:0.05em;text-transform:uppercase;
+  text-decoration:none;border-radius:8px;transition:all 0.25s;border:none;cursor:pointer}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,200,255,0.35)}
+.btn-ghost{padding:13px 32px;background:transparent;color:var(--text);
+  font-weight:600;font-size:0.85rem;letter-spacing:0.05em;text-transform:uppercase;
+  text-decoration:none;border-radius:8px;border:1px solid var(--border2);transition:all 0.25s}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+
+/* HERO RIGHT - terminal card */
+.terminal{background:var(--surface);border:1px solid var(--border2);border-radius:12px;overflow:hidden}
+.terminal-bar{background:var(--surface2);padding:10px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
+.t-dot{width:10px;height:10px;border-radius:50%}
+.t-red{background:#ff5f57}.t-yellow{background:#febc2e}.t-green{background:#28c840}
+.terminal-title{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text3);margin-left:8px}
+.terminal-body{padding:24px;font-family:'JetBrains Mono',monospace;font-size:0.78rem;line-height:2}
+.t-prompt{color:var(--green)}.t-cmd{color:var(--text)}.t-comment{color:var(--text3)}
+.t-key{color:var(--accent)}.t-val{color:#f59e0b}
+.t-string{color:#a78bfa}.t-cursor{display:inline-block;width:8px;height:14px;background:var(--accent);animation:cursor 1s infinite}
+@keyframes cursor{0%,100%{opacity:1}50%{opacity:0}}
+
+/* STATS ROW */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--border);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  position:relative;z-index:1;margin-top:80px}
+.stat{background:var(--bg);padding:28px 32px}
+.stat-num{font-size:2rem;font-weight:900;color:var(--accent);letter-spacing:-0.03em;display:block}
+.stat-lbl{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--text3);
+  text-transform:uppercase;letter-spacing:0.12em;margin-top:4px}
+
+/* CERT PREVIEW */
+.cert-preview{position:relative;z-index:1;padding:80px 60px;max-width:1280px;margin:0 auto}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:40px}
+.section-title{font-size:1.5rem;font-weight:800;letter-spacing:-0.02em}
+.section-sub{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--text3);
+  letter-spacing:0.12em;text-transform:uppercase;margin-top:4px}
+.see-all{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--accent);
+  text-decoration:none;padding:8px 16px;border:1px solid var(--border2);border-radius:6px;
+  transition:all 0.2s}
+.see-all:hover{background:var(--accent-dim);border-color:var(--accent)}
+
+.cert-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.cert-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:24px;display:flex;gap:20px;align-items:flex-start;
+  transition:all 0.25s;text-decoration:none;color:inherit}
+.cert-card:hover{border-color:var(--accent);transform:translateY(-2px);
+  box-shadow:0 8px 32px rgba(0,200,255,0.1)}
+.cert-logo{width:56px;height:56px;flex-shrink:0;border-radius:8px;overflow:hidden;
+  background:white;display:flex;align-items:center;justify-content:center}
+.cert-logo img{width:100%;height:100%;object-fit:contain}
+.cert-info{}
+.cert-issuer{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--accent);
+  letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px}
+.cert-name{font-size:0.9rem;font-weight:700;margin-bottom:6px;line-height:1.3}
+.cert-date{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--text3)}
+
+/* FOOTER */
+footer{position:relative;z-index:1;border-top:1px solid var(--border);
+  padding:32px 60px;display:flex;justify-content:space-between;align-items:center}
+.footer-logo{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--text3)}
+.footer-links{display:flex;gap:24px}
+.footer-link{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text3);
+  text-decoration:none;transition:color 0.2s}
+.footer-link:hover{color:var(--accent)}
+
+/* ANIM */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+  nav{padding:0 20px}
+  .hero{padding:80px 20px 40px}
+  .hero-top{grid-template-columns:1fr}
+  .terminal{display:none}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .cert-preview{padding:48px 20px}
+  .cert-grid{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:16px;padding:24px 20px;text-align:center}
+}
+</style>
+</head>
+<body>
+<div class="bg-layer">
+  <div class="grid-lines"></div>
+  <div class="orb1"></div>
+  <div class="orb2"></div>
+  <div class="orb3"></div>
+</div>
+
+<nav>
+  <a href="index.html" class="logo">
+    <span class="logo-bracket">[</span>mecitefe<span class="logo-bracket">]</span>
+  </a>
+  <div class="nav-links">
+    <a href="hakkimda.html" class="nav-link">Hakk&#305;mda</a>
+    <a href="deneyimler.html" class="nav-link">Deneyimler</a>
+    <a href="sertifikalar.html" class="nav-link">Sertifikalar</a>
+    <a href="https://tr.linkedin.com/in/mecit-efe-y%C4%B1lmaz-1789a2383" target="_blank" class="nav-cta">LinkedIn</a>
+  </div>
+</nav>
+
+<main>
+<section class="hero">
+  <div class="hero-top">
+    <div class="hero-left reveal">
+      <div class="hero-eyebrow">Aktif &#214;&#287;renci &amp; Cisco Sertifikal&#305;</div>
+      <h1 class="hero-name">
+        <span class="name-first">MEC&#304;T EFE</span>
+        <span class="name-last">YILMAZ</span>
+      </h1>
+      <div class="hero-title">// A&#287; &#304;&#351;letmecili&#287;i &amp; Siber G&#252;venlik</div>
+      <p class="hero-desc">
+        Cisco sertifikal&#305; a&#287; ve siber g&#252;venlik uzmanl&#305;&#287;&#305;na y&#246;nelen 11. s&#305;n&#305;f &#246;&#287;rencisi.
+        CCNA, siber tehdit analizi ve a&#287; g&#252;venli&#287;i konular&#305;nda do&#287;rulanm&#305;&#351; beceriler.
+      </p>
+      <div class="hero-btns">
+        <a href="sertifikalar.html" class="btn-primary">Sertifikalar&#305;m</a>
+        <a href="hakkimda.html" class="btn-ghost">Hakk&#305;mda</a>
+      </div>
+    </div>
+    <div class="hero-right reveal" style="transition-delay:0.2s">
+      <div class="terminal">
+        <div class="terminal-bar">
+          <div class="t-dot t-red"></div>
+          <div class="t-dot t-yellow"></div>
+          <div class="t-dot t-green"></div>
+          <span class="terminal-title">~/mecitefe/profile.json</span>
+        </div>
+        <div class="terminal-body">
+          <div><span class="t-prompt">$</span> <span class="t-cmd">cat profile.json</span></div>
+          <div style="margin-top:8px">{</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"name"</span>: <span class="t-string">"Mecit Efe Y&#305;lmaz"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"role"</span>: <span class="t-string">"A&#287; &#304;&#351;letmecili&#287;i &#214;&#287;r."</span>,</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"class"</span>: <span class="t-val">11</span>,</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"location"</span>: <span class="t-string">"&#304;zmir, TR"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"certs"</span>: [</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-string">"CCNA ITN"</span>,</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-string">"CCNA SRWE"</span>,</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-string">"Intro to Cybersecurity"</span>,</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-string">"Jr. Cybersec Analyst"</span></div>
+          <div>&nbsp;&nbsp;],</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"status"</span>: <span class="t-string">"aktif &#246;&#287;reniyor"</span></div>
+          <div>} <span class="t-cursor"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-row reveal" style="transition-delay:0.4s">
+    <div class="stat">
+      <span class="stat-num">4</span>
+      <div class="stat-lbl">Cisco Sertifikas&#305;</div>
+    </div>
+    <div class="stat">
+      <span class="stat-num">54+</span>
+      <div class="stat-lbl">Pratik Lab</div>
+    </div>
+    <div class="stat">
+      <span class="stat-num">11.</span>
+      <div class="stat-lbl">S&#305;n&#305;f</div>
+    </div>
+    <div class="stat">
+      <span class="stat-num">2026</span>
+      <div class="stat-lbl">Son Sertifika</div>
+    </div>
+  </div>
+</section>
+
+<section class="cert-preview">
+  <div class="reveal">
+    <div class="section-head">
+      <div>
+        <div class="section-title">Sertifikalar</div>
+        <div class="section-sub">Cisco NetAcad &mdash; Do&#287;rulanm&#305;&#351; Dijital Rozetler</div>
+      </div>
+      <a href="sertifikalar.html" class="see-all">T&#252;m&#252;n&#252; g&#246;r &rarr;</a>
+    </div>
+    <div class="cert-grid">
+      <a href="https://www.credly.com/badges/b3de1425-f6f6-4217-840b-63e803f4ab13" target="_blank" class="cert-card">
+        <div class="cert-logo">
+          <img src="https://images.credly.com/images/441578ec-c0f3-46cc-95fc-86b27e90cf4f/linkedin_thumb_image.png" alt="Jr Cybersec">
+        </div>
+        <div class="cert-info">
+          <div class="cert-issuer">Cisco NetAcad</div>
+          <div class="cert-name">Junior Cybersecurity Analyst Career Path</div>
+          <div class="cert-date">Ocak 2026</div>
+        </div>
+      </a>
+      <a href="https://www.credly.com/badges/f9828b20-adcf-42b2-9813-a0894832cdef" target="_blank" class="cert-card">
+        <div class="cert-logo">
+          <img src="https://images.credly.com/images/af8c6b4e-fc31-47c4-8dcb-eb7a2065dc5b/linkedin_thumb_image.png" alt="Intro Cybersec">
+        </div>
+        <div class="cert-info">
+          <div class="cert-issuer">Cisco NetAcad</div>
+          <div class="cert-name">Introduction to Cybersecurity</div>
+          <div class="cert-date">Kas&#305;m 2025</div>
+        </div>
+      </a>
+      <a href="https://www.credly.com/badges/16d0838c-3406-4a50-85d3-a009d35aa681" target="_blank" class="cert-card">
+        <div class="cert-logo">
+          <img src="https://images.credly.com/images/f4ccdba9-dd65-4349-baad-8f05df116443/linkedin_thumb_CCNASRWE__1_.png" alt="CCNA SRWE">
+        </div>
+        <div class="cert-info">
+          <div class="cert-issuer">Cisco NetAcad</div>
+          <div class="cert-name">CCNA: Switching, Routing &amp; Wireless Essentials</div>
+          <div class="cert-date">Haziran 2025</div>
+        </div>
+      </a>
+      <a href="https://www.credly.com/badges/016954d7-c12a-4483-a915-b8e8f8462fa9" target="_blank" class="cert-card">
+        <div class="cert-logo">
+          <img src="https://images.credly.com/images/70d71df5-f3dc-4380-9b9d-f22513a70417/linkedin_thumb_CCNAITN__1_.png" alt="CCNA ITN">
+        </div>
+        <div class="cert-info">
+          <div class="cert-issuer">Cisco NetAcad</div>
+          <div class="cert-name">CCNA: Introduction to Networks</div>
+          <div class="cert-date">Haziran 2025</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="footer-logo">&copy; 2026 Mecit Efe Y&#305;lmaz &mdash; &#304;zmir, T&#252;rkiye</div>
+  <div class="footer-links">
+    <a href="hakkimda.html" class="footer-link">Hakk&#305;mda</a>
+    <a href="deneyimler.html" class="footer-link">Deneyimler</a>
+    <a href="sertifikalar.html" class="footer-link">Sertifikalar</a>
+    <a href="https://tr.linkedin.com/in/mecit-efe-y%C4%B1lmaz-1789a2383" target="_blank" class="footer-link">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible')}})
+},{threshold:0.1})
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el))
+</script>
+</body>
+</html>
