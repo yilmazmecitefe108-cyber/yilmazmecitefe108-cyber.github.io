@@ -484,15 +484,6 @@ function setBtnLoading(on){
   }
 }
 
-async function sendMessage(){
-  const msg = textarea.value.trim()
-  if(!msg){ textarea.focus(); return }
-  hideFeedback()
-  if(EMAILJS_PUBLIC_KEY === 'BURAYA_PUBLIC_KEY_YAZ' ||
-     EMAILJS_SERVICE_ID === 'BURAYA_SERVICE_ID_YAZ' ||
-     EMAILJS_TEMPLATE_ID === 'BURAYA_TEMPLATE_ID_YAZ'){
-    showFeedback('error','⚠️ EmailJS henüz yapılandırılmamış. Lütfen index.html\'deki ayarları tamamla.')
-    return
   }
   setBtnLoading(true)
   const now = new Date().toLocaleString('tr-TR',{day:'2-digit',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'})
