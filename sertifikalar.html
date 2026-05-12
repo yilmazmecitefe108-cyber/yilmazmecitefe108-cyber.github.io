@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sertifikalar | Mecit Efe Yılmaz</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#050b12;
+  --bg2:#060f1e;
+  --surface:#0a1628;
+  --surface2:#0e2040;
+  --border:#0e2a47;
+  --border2:#1a3a60;
+  --accent:#00d4ff;
+  --accent-dim:rgba(0,212,255,0.08);
+  --accent2:#0077ff;
+  --green:#00ff9d;
+  --green-dim:rgba(0,255,157,0.08);
+  --yellow:#f59e0b;
+  --text:#e2eaf4;
+  --text2:#8aa3be;
+  --text3:#5a7a99;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;overflow-x:hidden;min-height:100vh;max-width:100vw}
+
+body::before{content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(0,212,255,0.03) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(0,212,255,0.03) 1px,transparent 1px);
+  background-size:60px 60px;pointer-events:none;z-index:0}
+
+/* ===== NAV ===== */
+nav{
+  position:fixed;top:0;width:100%;z-index:1000;
+  padding:0 60px;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(5,11,18,0.88);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border)
+}
+.logo{
+  font-family:'JetBrains Mono',monospace;font-size:0.85rem;
+  color:var(--accent);text-decoration:none;letter-spacing:0.1em;flex-shrink:0;
+}
+.logo span{color:var(--text3)}
+
+/* PC nav-right */
+.nav-right{display:flex;align-items:center;gap:8px}
+.nav-links{display:flex;gap:4px}
+.nav-links a{
+  font-size:0.78rem;font-weight:600;color:var(--text3);text-decoration:none;
+  letter-spacing:0.08em;text-transform:uppercase;
+  transition:all 0.2s;padding:6px 12px;border-radius:6px;white-space:nowrap
+}
+.nav-links a:hover,.nav-links a.active{color:var(--accent);background:var(--accent-dim)}
+.nav-socials{
+  display:flex;align-items:center;gap:6px;
+  margin-left:16px;padding-left:16px;border-left:1px solid var(--border2)
+}
+.nav-social-btn{
+  width:32px;height:32px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  text-decoration:none;color:var(--text3);font-size:0.88rem;
+  transition:all 0.2s;border:1px solid transparent;flex-shrink:0
+}
+.nav-social-btn:hover{color:var(--accent);background:var(--accent-dim);border-color:rgba(0,212,255,0.3)}
+
+/* Hamburger */
+.hamburger{
+  display:none;flex-direction:column;justify-content:center;align-items:center;
+  width:38px;height:38px;background:transparent;border:1px solid var(--border);
+  border-radius:8px;cursor:pointer;gap:5px;flex-shrink:0;padding:0;
+}
+.hamburger span{
+  display:block;width:18px;height:2px;
+  background:var(--accent);border-radius:2px;transition:all 0.3s;
+}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+.mobile-menu{
+  display:none;position:fixed;top:64px;left:0;right:0;
+  width:100%;box-sizing:border-box;
+  background:rgba(5,11,18,0.98);backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);z-index:99;
+  flex-direction:column;padding:16px 16px 20px;gap:4px;
+  overflow-x:hidden;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{
+  font-size:0.85rem;font-weight:600;color:var(--text3);
+  text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;
+  padding:12px 14px;border-radius:8px;transition:all 0.2s;
+}
+.mobile-menu a:hover,.mobile-menu a.active{color:var(--accent);background:var(--accent-dim)}
+.mobile-menu-divider{height:1px;background:var(--border);margin:8px 0}
+.mobile-socials{display:flex;gap:8px;padding:4px 14px}
+.mobile-socials a{
+  width:36px;height:36px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  text-decoration:none;color:var(--text3);font-size:0.9rem;
+  transition:all 0.2s;border:1px solid var(--border);
+}
+.mobile-socials a:hover{color:var(--accent);background:var(--accent-dim);border-color:rgba(0,212,255,0.3)}
+
+/* PAGE HEADER */
+.page-header{position:relative;z-index:1;padding:100px 60px 0;max-width:1280px;margin:0 auto;width:100%;box-sizing:border-box}
+.page-label{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--text3);
+  letter-spacing:0.2em;text-transform:uppercase;margin-bottom:16px}
+.page-title{font-size:clamp(2.5rem,5vw,4rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:12px}
+.page-title span{background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.page-desc{font-size:0.95rem;color:var(--text2);line-height:1.8;max-width:560px;margin-bottom:48px}
+
+.filter-bar{display:flex;gap:8px;margin-bottom:40px;flex-wrap:wrap}
+.filter-btn{
+  font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;
+  padding:7px 18px;border-radius:6px;border:1px solid var(--border2);background:transparent;
+  color:var(--text3);cursor:pointer;transition:all 0.2s
+}
+.filter-btn:hover,.filter-btn.active{background:var(--accent-dim);border-color:var(--accent);color:var(--accent)}
+
+.page-content{position:relative;z-index:1;padding:40px 60px 80px;max-width:1280px;margin:0 auto;width:100%;box-sizing:border-box}
+
+/* CERT LIST */
+.cert-list{display:flex;flex-direction:column;gap:16px}
+.cert-item{
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  overflow:hidden;transition:all 0.3s;text-decoration:none;color:inherit;display:block
+}
+.cert-item:hover{border-color:var(--accent);transform:translateY(-2px);
+  box-shadow:0 12px 40px rgba(0,212,255,0.08)}
+.cert-item-inner{display:grid;grid-template-columns:80px 1fr auto;gap:0;align-items:stretch}
+.cert-side{
+  width:80px;background:var(--surface2);border-right:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0
+}
+.cert-logo-wrap{
+  width:52px;height:52px;background:white;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;overflow:hidden;padding:4px
+}
+.cert-logo-wrap img{width:100%;height:100%;object-fit:contain}
+.cert-logo-placeholder{
+  width:52px;height:52px;background:var(--surface2);border-radius:8px;
+  border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;
+  font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--text3);text-align:center;line-height:1.3
+}
+.cert-body{padding:24px 28px;display:flex;flex-direction:column;justify-content:center;gap:6px}
+.cert-issuer{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--accent);
+  letter-spacing:0.12em;text-transform:uppercase}
+.cert-name{font-size:1rem;font-weight:700;color:var(--text);line-height:1.3}
+.cert-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.cert-tag{font-family:'JetBrains Mono',monospace;font-size:0.6rem;
+  padding:3px 10px;border-radius:4px;border:1px solid var(--border2);color:var(--text3)}
+.cert-tag.green{color:var(--green);border-color:rgba(0,255,157,0.3);background:var(--green-dim)}
+.cert-tag.blue{color:var(--accent);border-color:rgba(0,212,255,0.3);background:var(--accent-dim)}
+.cert-tag.purple{color:#a78bfa;border-color:rgba(167,139,250,0.3);background:rgba(167,139,250,0.08)}
+.cert-meta{
+  padding:24px 28px;display:flex;flex-direction:column;
+  align-items:flex-end;justify-content:center;gap:8px;flex-shrink:0
+}
+.cert-date{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--text3)}
+.cert-verify{
+  font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--accent);
+  padding:5px 12px;border:1px solid rgba(0,212,255,0.3);border-radius:4px;
+  background:var(--accent-dim);white-space:nowrap;display:flex;align-items:center;gap:5px
+}
+.cert-verify i{font-size:0.6rem}
+
+/* BADGE SECTION */
+.badge-section{margin-top:60px}
+.section-divider{display:flex;align-items:center;gap:16px;margin-bottom:32px}
+.section-divider-title{
+  font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--text3);
+  letter-spacing:0.15em;text-transform:uppercase;white-space:nowrap
+}
+.section-divider-line{flex:1;height:1px;background:var(--border)}
+.badge-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.badge-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:20px;text-align:center;text-decoration:none;color:inherit;
+  transition:all 0.25s;display:flex;flex-direction:column;align-items:center;gap:12px
+}
+.badge-card:hover{border-color:var(--accent);transform:translateY(-3px);
+  box-shadow:0 8px 32px rgba(0,212,255,0.1)}
+.badge-img-wrap{
+  width:90px;height:90px;border-radius:50%;overflow:hidden;
+  background:white;display:flex;align-items:center;justify-content:center;
+  border:3px solid var(--border2);transition:border-color 0.25s
+}
+.badge-card:hover .badge-img-wrap{border-color:var(--accent)}
+.badge-img-wrap img{width:100%;height:100%;object-fit:contain}
+.badge-name{font-size:0.78rem;font-weight:700;color:var(--text);line-height:1.3;text-align:center}
+.badge-issuer{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em}
+.badge-link-label{
+  font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--accent);
+  display:flex;align-items:center;gap:4px;margin-top:4px
+}
+
+/* STATS */
+.cert-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--border);border:1px solid var(--border);border-radius:10px;
+  overflow:hidden;margin-bottom:40px
+}
+.cstat{background:var(--surface);padding:24px 28px;text-align:center}
+.cstat-num{font-size:1.8rem;font-weight:800;color:var(--accent);letter-spacing:-0.03em;display:block}
+.cstat-lbl{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--text3);
+  text-transform:uppercase;letter-spacing:0.12em;margin-top:4px}
+
+/* CONTACT */
+.contact-section{margin-top:40px}
+.contact-mail-card{
+  display:inline-flex;align-items:center;gap:14px;padding:16px 24px;
+  background:var(--surface);border:1px solid var(--border2);border-radius:8px;
+  text-decoration:none;color:var(--text);transition:all 0.25s;
+  position:relative;overflow:hidden
+}
+.contact-mail-card::before{content:'';position:absolute;left:0;top:0;width:3px;height:100%;background:var(--accent)}
+.contact-mail-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+.contact-mail-card i{color:var(--accent);font-size:1.1rem}
+.contact-mail-label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text3)}
+.contact-mail-val{font-size:0.92rem;font-weight:700;color:var(--accent)}
+
+/* BOTTOM NAV */
+.bottom-nav{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:40px;border-top:1px solid var(--border);margin-top:60px
+}
+.nav-btn{
+  font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--accent);
+  text-decoration:none;display:flex;align-items:center;gap:8px;
+  padding:12px 20px;border:1px solid var(--border2);border-radius:6px;transition:all 0.2s
+}
+.nav-btn:hover{border-color:var(--accent);background:var(--accent-dim)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  nav{padding:0 16px}
+  .nav-right{display:none}
+  .hamburger{display:flex}
+
+  html,body{overflow-x:hidden;max-width:100vw}
+
+  .page-header{padding:90px 16px 0;max-width:100%}
+  .page-content{padding:32px 16px 60px;max-width:100%}
+
+  .cert-item-inner{
+    display:grid;
+    grid-template-columns:64px 1fr;
+    grid-template-rows:auto auto;
+  }
+  .cert-side{
+    width:64px;grid-column:1;grid-row:1;padding:16px 0;
+  }
+  .cert-body{
+    grid-column:2;grid-row:1;padding:16px 16px 8px;
+  }
+  .cert-meta{
+    grid-column:1 / span 2;grid-row:2;
+    flex-direction:row;align-items:center;justify-content:flex-start;
+    gap:12px;padding:8px 16px 16px;border-top:1px solid var(--border);
+  }
+
+  .badge-grid{grid-template-columns:repeat(2,1fr)}
+  .cert-stats{grid-template-columns:1fr}
+  .bottom-nav{flex-direction:column;gap:12px}
+  .filter-bar{gap:6px}
+  .contact-mail-card{width:100%}
+}
+
+@media(max-width:500px){
+  .badge-grid{grid-template-columns:1fr}
+  .cert-name{font-size:0.88rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">
+    <span>~/</span>mecitefe
+  </a>
+
+  <!-- PC menüsü -->
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="hakkimda.html">Hakkımda</a>
+      <a href="deneyimler.html">Deneyimler</a>
+      <a href="sertifikalar.html" class="active">Sertifikalar</a>
+    </div>
+    <div class="nav-socials">
+      <a href="https://www.instagram.com/yilmazmecitef/?hl=tr" target="_blank" class="nav-social-btn" title="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/mecit-efe-y%C4%B1lmaz-1789a2383/" target="_blank" class="nav-social-btn" title="LinkedIn">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+      <a href="https://www.youtube.com/@Mahmutpro3" target="_blank" class="nav-social-btn" title="YouTube">
+        <i class="fab fa-youtube"></i>
+      </a>
+      <a href="https://x.com/MecitY72026/verified_followers" target="_blank" class="nav-social-btn" title="X (Twitter)">
+        <i class="fab fa-x-twitter"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Mobil hamburger -->
+  <button class="hamburger" id="hamburger" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobil açılır menü -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="hakkimda.html">Hakkımda</a>
+  <a href="deneyimler.html">Deneyimler</a>
+  <a href="sertifikalar.html" class="active">Sertifikalar</a>
+  <div class="mobile-menu-divider"></div>
+  <div class="mobile-socials">
+    <a href="https://www.instagram.com/yilmazmecitef/?hl=tr" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.linkedin.com/in/mecit-efe-y%C4%B1lmaz-1789a2383/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://www.youtube.com/@Mahmutpro3" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+    <a href="https://x.com/MecitY72026/verified_followers" target="_blank" title="X"><i class="fab fa-x-twitter"></i></a>
+  </div>
+</div>
+
+<div class="page-header">
+  <div class="reveal">
+    <div class="page-label">// 03 — sertifikalar</div>
+    <h1 class="page-title">Doğrulanmış <span>Yetkinlikler</span></h1>
+    <p class="page-desc">
+      Cisco NetAcad platformu üzerinden edindiğim, Credly ile doğrulanmış dijital rozetler ve sertifikalar.
+      Her biri gerçek laboratuvar ortamında uygulama yapılarak kazanılmıştır.
+    </p>
+
+    <div class="cert-stats">
+      <div class="cstat">
+        <span class="cstat-num">4</span>
+        <div class="cstat-lbl">Aktif Sertifika</div>
+      </div>
+      <div class="cstat">
+        <span class="cstat-num">54+</span>
+        <div class="cstat-lbl">Pratik Lab</div>
+      </div>
+      <div class="cstat">
+        <span class="cstat-num">2026</span>
+        <div class="cstat-lbl">Son Kazanılan</div>
+      </div>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterCerts('all',this)">Tümü</button>
+      <button class="filter-btn" onclick="filterCerts('network',this)">Ağ Teknolojileri</button>
+      <button class="filter-btn" onclick="filterCerts('security',this)">Siber Güvenlik</button>
+    </div>
+  </div>
+</div>
+
+<div class="page-content">
+
+  <div class="cert-list reveal" id="certList">
+
+    <a href="https://www.credly.com/badges/b3de1425-f6f6-4217-840b-63e803f4ab13" target="_blank" class="cert-item" data-cat="security">
+      <div class="cert-item-inner">
+        <div class="cert-side">
+          <div class="cert-logo-wrap">
+            <img src="https://images.credly.com/size/340x340/images/441578ec-c0f3-46cc-95fc-86b27e90cf4f/image.png"
+                 alt="Junior Cybersecurity Analyst"
+                 onerror="this.parentElement.outerHTML='<div class=\'cert-logo-placeholder\'>Cisco<br>NetAcad</div>'">
+          </div>
+        </div>
+        <div class="cert-body">
+          <div class="cert-issuer">Cisco NetAcad</div>
+          <div class="cert-name">Junior Cybersecurity Analyst Career Path</div>
+          <div class="cert-tags">
+            <span class="cert-tag green">● Aktif</span>
+            <span class="cert-tag purple">Siber Güvenlik</span>
+            <span class="cert-tag blue">Kariyer Sertifikası</span>
+          </div>
+        </div>
+        <div class="cert-meta">
+          <div class="cert-date">Ocak 2026</div>
+          <div class="cert-verify"><i class="fas fa-check-circle"></i> Doğrulanmış</div>
+        </div>
+      </div>
+    </a>
+
+    <a href="https://www.credly.com/badges/f9828b20-adcf-42b2-9813-a0894832cdef" target="_blank" class="cert-item" data-cat="security">
+      <div class="cert-item-inner">
+        <div class="cert-side">
+          <div class="cert-logo-wrap">
+            <img src="https://images.credly.com/size/340x340/images/af8c6b4e-fc31-47c4-8dcb-eb7a2065dc5b/I2CS__1_.png"
+                 alt="Intro to Cybersecurity"
+                 onerror="this.parentElement.outerHTML='<div class=\'cert-logo-placeholder\'>Cisco<br>NetAcad</div>'">
+          </div>
+        </div>
+        <div class="cert-body">
+          <div class="cert-issuer">Cisco NetAcad</div>
+          <div class="cert-name">Introduction to Cybersecurity</div>
+          <div class="cert-tags">
+            <span class="cert-tag green">● Aktif</span>
+            <span class="cert-tag purple">Siber Güvenlik</span>
+            <span class="cert-tag blue">Giriş Seviyesi</span>
+          </div>
+        </div>
+        <div class="cert-meta">
+          <div class="cert-date">Kasım 2025</div>
+          <div class="cert-verify"><i class="fas fa-check-circle"></i> Doğrulanmış</div>
+        </div>
+      </div>
+    </a>
+
+    <a href="https://www.credly.com/badges/16d0838c-3406-4a50-85d3-a009d35aa681" target="_blank" class="cert-item" data-cat="network">
+      <div class="cert-item-inner">
+        <div class="cert-side">
+          <div class="cert-logo-wrap">
+            <img src="https://images.credly.com/size/340x340/images/f4ccdba9-dd65-4349-baad-8f05df116443/CCNASRWE__1_.png"
+                 alt="CCNA SRWE"
+                 onerror="this.parentElement.outerHTML='<div class=\'cert-logo-placeholder\'>Cisco<br>CCNA</div>'">
+          </div>
+        </div>
+        <div class="cert-body">
+          <div class="cert-issuer">Cisco NetAcad</div>
+          <div class="cert-name">CCNA: Switching, Routing &amp; Wireless Essentials</div>
+          <div class="cert-tags">
+            <span class="cert-tag green">● Aktif</span>
+            <span class="cert-tag blue">CCNA</span>
+            <span class="cert-tag blue">Ağ Teknolojileri</span>
+          </div>
+        </div>
+        <div class="cert-meta">
+          <div class="cert-date">Haziran 2025</div>
+          <div class="cert-verify"><i class="fas fa-check-circle"></i> Doğrulanmış</div>
+        </div>
+      </div>
+    </a>
+
+    <a href="https://www.credly.com/badges/016954d7-c12a-4483-a915-b8e8f8462fa9" target="_blank" class="cert-item" data-cat="network">
+      <div class="cert-item-inner">
+        <div class="cert-side">
+          <div class="cert-logo-wrap">
+            <img src="https://images.credly.com/size/340x340/images/70d71df5-f3dc-4380-9b9d-f22513a70417/CCNAITN__1_.png"
+                 alt="CCNA ITN"
+                 onerror="this.parentElement.outerHTML='<div class=\'cert-logo-placeholder\'>Cisco<br>CCNA</div>'">
+          </div>
+        </div>
+        <div class="cert-body">
+          <div class="cert-issuer">Cisco NetAcad</div>
+          <div class="cert-name">CCNA: Introduction to Networks</div>
+          <div class="cert-tags">
+            <span class="cert-tag green">● Aktif</span>
+            <span class="cert-tag blue">CCNA</span>
+            <span class="cert-tag blue">Ağ Teknolojileri</span>
+          </div>
+        </div>
+        <div class="cert-meta">
+          <div class="cert-date">Haziran 2025</div>
+          <div class="cert-verify"><i class="fas fa-check-circle"></i> Doğrulanmış</div>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="badge-section reveal" style="transition-delay:0.2s">
+    <div class="section-divider">
+      <div class="section-divider-title">Credly Dijital Rozetleri</div>
+      <div class="section-divider-line"></div>
+    </div>
+    <div class="badge-grid">
+
+      <a href="https://www.credly.com/badges/b3de1425-f6f6-4217-840b-63e803f4ab13" target="_blank" class="badge-card">
+        <div class="badge-img-wrap">
+          <img src="https://images.credly.com/size/340x340/images/441578ec-c0f3-46cc-95fc-86b27e90cf4f/image.png"
+               alt="Jr Cybersec"
+               onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-family:JetBrains Mono,monospace;font-size:0.55rem;color:#5a7a99;text-align:center\'>Cisco<br>Badge</span>'">
+        </div>
+        <div class="badge-name">Junior Cybersecurity Analyst</div>
+        <div class="badge-issuer">Cisco NetAcad</div>
+        <div class="badge-link-label"><i class="fas fa-external-link-alt"></i> Credly'de Gör</div>
+      </a>
+
+      <a href="https://www.credly.com/badges/f9828b20-adcf-42b2-9813-a0894832cdef" target="_blank" class="badge-card">
+        <div class="badge-img-wrap">
+          <img src="https://images.credly.com/size/340x340/images/af8c6b4e-fc31-47c4-8dcb-eb7a2065dc5b/I2CS__1_.png"
+               alt="Intro Cybersec"
+               onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-family:JetBrains Mono,monospace;font-size:0.55rem;color:#5a7a99;text-align:center\'>Cisco<br>Badge</span>'">
+        </div>
+        <div class="badge-name">Introduction to Cybersecurity</div>
+        <div class="badge-issuer">Cisco NetAcad</div>
+        <div class="badge-link-label"><i class="fas fa-external-link-alt"></i> Credly'de Gör</div>
+      </a>
+
+      <a href="https://www.credly.com/badges/16d0838c-3406-4a50-85d3-a009d35aa681" target="_blank" class="badge-card">
+        <div class="badge-img-wrap">
+          <img src="https://images.credly.com/size/340x340/images/f4ccdba9-dd65-4349-baad-8f05df116443/CCNASRWE__1_.png"
+               alt="CCNA SRWE"
+               onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-family:JetBrains Mono,monospace;font-size:0.55rem;color:#5a7a99;text-align:center\'>Cisco<br>Badge</span>'">
+        </div>
+        <div class="badge-name">CCNA: Switching, Routing &amp; Wireless</div>
+        <div class="badge-issuer">Cisco NetAcad</div>
+        <div class="badge-link-label"><i class="fas fa-external-link-alt"></i> Credly'de Gör</div>
+      </a>
+
+      <a href="https://www.credly.com/badges/016954d7-c12a-4483-a915-b8e8f8462fa9" target="_blank" class="badge-card">
+        <div class="badge-img-wrap">
+          <img src="https://images.credly.com/size/340x340/images/70d71df5-f3dc-4380-9b9d-f22513a70417/CCNAITN__1_.png"
+               alt="CCNA ITN"
+               onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-family:JetBrains Mono,monospace;font-size:0.55rem;color:#5a7a99;text-align:center\'>Cisco<br>Badge</span>'">
+        </div>
+        <div class="badge-name">CCNA: Introduction to Networks</div>
+        <div class="badge-issuer">Cisco NetAcad</div>
+        <div class="badge-link-label"><i class="fas fa-external-link-alt"></i> Credly'de Gör</div>
+      </a>
+
+    </div>
+  </div>
+
+  <div class="contact-section reveal" style="transition-delay:0.25s">
+    <a href="mailto:yilmazmecitefe@gmail.com" class="contact-mail-card">
+      <i class="fas fa-envelope"></i>
+      <div>
+        <div class="contact-mail-label">İletişim</div>
+        <div class="contact-mail-val">yilmazmecitefe@gmail.com</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="bottom-nav reveal" style="transition-delay:0.3s">
+    <a href="deneyimler.html" class="nav-btn">← Deneyimler</a>
+    <a href="index.html" class="nav-btn">Ana Sayfa →</a>
+  </div>
+
+</div>
+
+<script>
+// Reveal animasyonu
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('visible')})
+},{threshold:0.08})
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el))
+
+// Filtre
+function filterCerts(cat, btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'))
+  btn.classList.add('active')
+  document.querySelectorAll('.cert-item').forEach(item=>{
+    if(cat==='all' || item.dataset.cat===cat){
+      item.style.display='block'
+    } else {
+      item.style.display='none'
+    }
+  })
+}
+
+// Hamburger menü
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+document.addEventListener('click', (e) => {
+  if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }
+});
+</script>
+</body>
+</html>
